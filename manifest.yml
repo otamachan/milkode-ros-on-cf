@@ -1,0 +1,12 @@
+---
+applications:
+- name: milkode-ros-indigo
+  disk_quota: 2048M
+  memory: 2048M
+  buildpack: https://github.com/ddollar/heroku-buildpack-multi
+  command: bundle exec ruby init.rb && ((bundle exec rackup config.ru -p $PORT) & ( bundle exec ruby add_packages.rb && sleep infinity))
+  env:
+    MILKODE_DEFAULT_DIR: /app/.milkode
+    ROSDISTRO: indigo
+    RAILS_ENV: production
+    RACK_ENV: production
